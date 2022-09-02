@@ -12,8 +12,14 @@ RSpec.describe StringCalculator do
       expect(subject.add("123456")).to eq(123456)
     end
 
-    it "adds two numbers when two are provided" do
+    it "returns the sum of two numbers when two are provided" do
       expect(subject.add("1,2")).to eq(3)
+    end
+
+    it "returns the sum of all comma-separated numbers provided" do
+      expect(subject.add("1,2,3")).to eq(6)
+      expect(subject.add("10,56,1,604")).to eq(671)
+      expect(subject.add("1,2,3,4,5,6,7,8,9,10")).to eq(55)
     end
   end
 end
