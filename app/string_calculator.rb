@@ -1,6 +1,6 @@
 class StringCalculator
   def add(input_string)
-    provided_delimeter = input_string.slice(/(?<=\/\/)\W(?=\n)/)
+    provided_delimeter = input_string.slice(/(?<=\/\/)\W+(?=\n)/)
         
     if provided_delimeter
       addend_string = input_string
