@@ -9,7 +9,6 @@ RSpec.describe StringCalculator do
     it "returns the number when only one is provided" do
       expect(subject.add("1")).to eq(1)
       expect(subject.add("500")).to eq(500)
-      expect(subject.add("123456")).to eq(123456)
     end
 
     it "returns the sum of two numbers when two are provided" do
@@ -34,6 +33,10 @@ RSpec.describe StringCalculator do
 
     it "throws exception when negative numbers are passed" do
       expect{subject.add("1,-1")}.to raise_exception.with_message("negatives not allowed")
+    end
+
+    it "ignores numbers larger than 1000 in the input string" do
+      expect(subject.add("3,1000,1001")).to eq(1003)
     end
   end
 end

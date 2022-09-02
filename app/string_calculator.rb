@@ -12,7 +12,7 @@ class StringCalculator
     addends.reduce(0) do |total, n| 
       number = n.to_i
       if number >= 0
-        total + n.to_i 
+        number <= 1000 ? total + number : total
       else
         raise Exception.new("negatives not allowed")
       end
