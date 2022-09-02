@@ -41,7 +41,7 @@ RSpec.describe StringCalculator do
     end
 
     it "accepts delimeters of any length" do
-      input_string = "//***\n1***2***3"
+      input_string = "//[***]\n1***2***3"
       expect(subject.add(input_string)).to eq(6)
     end
   end

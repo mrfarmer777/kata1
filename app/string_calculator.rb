@@ -1,13 +1,20 @@
 class StringCalculator
   def add(input_string)
-    provided_delimeter = input_string.slice(/(?<=\/\/)\W+(?=\n)/)
+    delimeter_string = input_string.slice(/(?<=\/\/)\W+(?=\n)/)
         
-    if provided_delimeter
-      addend_string = input_string
-      addends = addend_string.split(provided_delimeter)
+    if delimeter_string
+      if delimeter_string.length > 1
+        delimeter = delimeter_string.slice(/(?<=\[)\W+(?=\])/)
+      else
+        delimeter = delimeter_string
+      end
+      addend_string = input_string.split("\n")[1]
     else
-      addends = input_string.split(/[\n,]/)
+      addend_string = input_string
+      delimeter = /[\n,]/
     end
+      
+    addends = addend_string.split(delimeter)    
 
     addends.reduce(0) do |total, n| 
       number = n.to_i
