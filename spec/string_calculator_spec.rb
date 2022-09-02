@@ -11,5 +11,9 @@ RSpec.describe StringCalculator do
       expect(subject.add("500")).to eq(500)
       expect(subject.add("123456")).to eq(123456)
     end
+
+    it "adds two numbers when two are provided" do
+      expect(subject.add("1,2")).to eq(3)
+    end
   end
 end
