@@ -37,6 +37,7 @@ RSpec.describe StringCalculator do
 
     it "ignores numbers larger than 1000 in the input string" do
       expect(subject.add("3,1000,1001")).to eq(1003)
+      expect(subject.add("1001")).to eq(0)
     end
   end
 end
