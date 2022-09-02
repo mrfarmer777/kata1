@@ -1,10 +1,13 @@
 class StringCalculator
+  DELIMETER_INPUT_REGEX = /(?<=\/\/)\W+(?=\n)/
+  DELIMETER_PARSING_REGEX = /(?<=\[)[^\[\]]+(?=\])/
+
   def add(input_string)
-    delimeter_string = input_string.slice(/(?<=\/\/)\W+(?=\n)/)
+    delimeter_string = input_string.slice(DELIMETER_INPUT_REGEX)
         
     if delimeter_string
       if delimeter_string.length > 1
-        delimeters = delimeter_string.scan(/(?<=\[)[^\[\]]+(?=\])/)
+        delimeters = delimeter_string.scan(DELIMETER_PARSING_REGEX)
         delimeters = delimeters.map{|d| Regexp.escape(d) }
         delimeter = /#{delimeters.join("|")}/
       else
