@@ -4,7 +4,9 @@ class StringCalculator
         
     if delimeter_string
       if delimeter_string.length > 1
-        delimeter = delimeter_string.slice(/(?<=\[)\W+(?=\])/)
+        delimeters = delimeter_string.scan(/(?<=\[)[^\[\]]+(?=\])/)
+        delimeters = delimeters.map{|d| Regexp.escape(d) }
+        delimeter = /#{delimeters.join("|")}/
       else
         delimeter = delimeter_string
       end
