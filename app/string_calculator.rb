@@ -1,19 +1,19 @@
 class StringCalculator
-  DELIMETER_INPUT_REGEX = /(?<=\/\/)\W+(?=\n)/
-  DELIMETER_PARSING_REGEX = /(?<=\[)[^\[\]]+(?=\])/
+  delimiter_INPUT_REGEX = /(?<=\/\/)\W+(?=\n)/
+  delimiter_PARSING_REGEX = /(?<=\[)[^\[\]]+(?=\])/
 
   def add(input_string)
-    delimeter_string = input_string.slice(DELIMETER_INPUT_REGEX)
+    delimiter_string = input_string.slice(delimiter_INPUT_REGEX)
         
-    if delimeter_string
-      delimeter = parse_provided_delimeter(delimeter_string)
+    if delimiter_string
+      delimiter = parse_provided_delimiter(delimiter_string)
       addend_string = input_string.split("\n")[1]
     else
       addend_string = input_string
-      delimeter = /[\n,]/
+      delimiter = /[\n,]/
     end
       
-    addends = addend_string.split(delimeter)    
+    addends = addend_string.split(delimiter)    
 
     addends.reduce(0) do |total, n|
       number = n.to_i
@@ -27,17 +27,17 @@ class StringCalculator
 
   private
 
-  def parse_provided_delimeter(delimeter_string)
-    if delimeter_string.length > 1
-      compose_delimeter(delimeter_string)
+  def parse_provided_delimiter(delimiter_string)
+    if delimiter_string.length > 1
+      compose_delimiter(delimiter_string)
     else
-      delimeter_string
+      delimiter_string
     end
   end
 
-  def compose_delimeter(delimeter_string)
-    delimeters = delimeter_string.scan(DELIMETER_PARSING_REGEX)
-    delimeters = delimeters.map{|d| Regexp.escape(d) }
-    /#{delimeters.join("|")}/
+  def compose_delimiter(delimiter_string)
+    delimiters = delimiter_string.scan(delimiter_PARSING_REGEX)
+    delimiters = delimiters.map{|d| Regexp.escape(d) }
+    /#{delimiters.join("|")}/
   end
 end
