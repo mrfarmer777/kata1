@@ -26,5 +26,10 @@ RSpec.describe StringCalculator do
       expect(subject.add("1\n2,3")).to eq(6)
       expect(subject.add("1\n2\n3")).to eq(6)
     end
+
+    it "can accept explicit delimiters" do
+      input_string = "//;\n1;2"
+      expect(subject.add(input_string)).to eq(3)
+    end
   end
 end
